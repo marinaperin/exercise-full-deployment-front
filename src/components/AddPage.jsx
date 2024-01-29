@@ -5,7 +5,6 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export default function () {
   const [inputVal, setInputVal] = useState({});
   const [selVal, setSelVal] = useState("Choose");
-  const [albums, setAlbums] = useState([]);
   const [musicians, setMusicians] = useState([]);
   const [error, setError] = useState();
 
@@ -14,7 +13,6 @@ export default function () {
       .get(`${apiUrl}/musicians`)
       .then((res) => {
         setMusicians(res.data);
-        console.log(res);
       })
       .catch((err) => {
         console.error(err);
@@ -192,7 +190,7 @@ export default function () {
                 onClick={() => {
                   axios
                     .post(`${apiUrl}/${selVal}`, inputVal)
-                    .then((res) => console.log(res))
+                    .then((res) => console.log(res.status))
                     .catch((err) => console.error(err));
                   {
                     selVal === "albums"

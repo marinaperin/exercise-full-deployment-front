@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function () {
@@ -9,6 +9,7 @@ export default function () {
   const [songs, setSongs] = useState([]);
   const [error, setError] = useState(false);
   const { id } = useParams();
+  const musicianId = musician._id;
 
   useEffect(() => {
     axios
@@ -17,7 +18,6 @@ export default function () {
         setAlbum(res.data);
         setMusician(res.data.musician);
         setSongs(res.data.songs);
-        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -35,7 +35,10 @@ export default function () {
       {!error && album && (
         <div>
           <h2>
-            {musician.art_name} - {album.title}
+            <Link to={`/musicians/${musicianId}`} className="link">
+              {musician.art_name}
+            </Link>
+            - {album.title}
           </h2>
           <div className="single-page">
             <figure className="single-img">
@@ -53,7 +56,7 @@ export default function () {
                 <li>
                   <strong>Songs: </strong>
                   <ul className="nested-list">
-                     {songs.map((s, i) => {
+                    {songs.map((s, i) => {
                       return <li key={`${s}-${i}`}>{s}</li>;
                     })}
                   </ul>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function () {
@@ -15,7 +15,6 @@ export default function () {
       .then((res) => {
         setMusician(res.data);
         setAlbums(res.data.albums);
-        console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
@@ -60,7 +59,11 @@ export default function () {
                 <strong>Albums: </strong>
                 <ul className="nested-list">
                   {albums.map((a) => {
-                    return <li key={a._id}>{a.title}</li>;
+                    return (
+                      <li key={a._id}>
+                        <Link to={`/albums/${a._id}`} className="link">{a.title}</Link>
+                      </li>
+                    );
                   })}
                 </ul>
               </li>
