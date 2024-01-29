@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function () {
@@ -18,19 +19,28 @@ export default function () {
 
   return (
     <>
+      {error && (
+        <div className="error">
+          There was an error, try again in a few minutes.
+        </div>
+      )}
       <main>
-        {error && <div>There was an error, try again in a few minutes.</div>}
         {!error && (
           <>
             {albums.map((a) => {
               return (
-                <div key={a._id}>
-                  <h3>
-                    {a.title} ({a.year})
-                  </h3>
-                  <figure>
-                    <img src={a.poster} alt={a.title} />
-                  </figure>
+                <div key={a._id} className="card">
+                  <Link to={`/albums/${a._id}`}>
+                    <div className="top-card">
+                      <h3>
+                        {a.title} ({a.year})
+                      </h3>
+                      <p className="subtitle">{a.musician.art_name}</p>
+                    </div>
+                    <figure>
+                      <img src={a.poster} alt={a.title} />
+                    </figure>
+                  </Link>
                 </div>
               );
             })}

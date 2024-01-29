@@ -1,6 +1,10 @@
 import { NavLink, Navigate, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Albums from "./components/Albums";
+import Musicians from "./components/Musicians";
+import SingleAlbum from "./components/SingleAlbum";
+import SingleMusician from "./components/SingleMusician";
+import AddPage from "./components/AddPage";
 
 function App() {
   return (
@@ -22,10 +26,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/albums" />} />
         <Route path="/albums" element={<Albums />} />
-        <Route path="/albums/:id" element />
-        <Route path="/musicians" element />
-        <Route path="/musicians/:id" element />
-        <Route path="/add" element />
+        <Route path="/albums/:id" element={<SingleAlbum />} />
+        <Route path="/musicians" element={<Musicians />} />
+        <Route path="/musicians/:id" element={<SingleMusician />} />
+        <Route path="/add" element={<AddPage />} />
       </Routes>
     </>
   );
