@@ -33,7 +33,7 @@ a {
   text-align: inherit;
 }
 
-.link:hover{
+.link:hover {
   color: powderblue;
 }
 
@@ -96,7 +96,7 @@ main {
     &:hover {
       background-color: black;
     }
-    img{
+    img {
       border-radius: 10px;
     }
     .subtitle {
@@ -126,6 +126,11 @@ main {
 h2 {
   margin-bottom: 1rem;
 }
+.top-page {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5rem;
+}
 .single-page {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -144,7 +149,32 @@ h2 {
     }
   }
 }
-
+dialog {
+  width: 80vw;
+  height: 60vh;
+  left: calc((100vw - 80vw) / 2);
+  top: calc((100vh - 60vh) / 2);
+  padding: 1rem;
+  .dialog-btn {
+    display: flex;
+    justify-content: end;
+  }
+  h3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .dialog-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1rem;
+  }
+  .delete-msg{
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+  }
+}
 .form-add {
   display: grid;
   justify-items: center;
